@@ -1,5 +1,7 @@
 */node_modules/*
 */dist/*
-*/.env
-*/.DS_Store
-*/.vscode/*
+backend/.env
+frontend/.env
+.env
+.DS_Store
+.vscode/*
