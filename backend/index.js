@@ -12,8 +12,14 @@ app.use(express.json());
 const port = 3000;
 
 // 3. Cargar rutas
-const authRoutes = require("./routes/auth");
+const authRoutes = require("./routes/auth.js");
 app.use("/auth", authRoutes);
+
+const materiasRoutes = require("./routes/materias.js");
+app.use("/materias", materiasRoutes);
+
+const apuntesRoutes = require("./routes/apuntes.js");
+app.use("/apuntes", apuntesRoutes);
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
