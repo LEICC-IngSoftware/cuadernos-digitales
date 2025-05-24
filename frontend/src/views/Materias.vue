@@ -42,6 +42,7 @@ onMounted(fetchMaterias);
         <span>{{ materia.nombre }}</span>
         <div>
           <RouterLink :to="`/materias/${materia.id}/edit`" class="btn btn-sm btn-warning me-2">Editar</RouterLink>
+          <RouterLink :to="`/materias/${materia.id}/apuntes`" class="btn btn-sm btn-info me-2">Ver Apuntes</RouterLink>
           <button @click="deleteMateria(materia.id)" class="btn btn-sm btn-danger">Eliminar</button>
         </div>
       </div>

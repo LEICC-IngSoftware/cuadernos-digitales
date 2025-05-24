@@ -106,4 +106,26 @@ router.delete("/:id", authMiddleware, async (req, res) => {
     }
 });
 
+// Obtener los apuntes de una materia específica
+router.get("/:materia_id/apuntes", authMiddleware, async (req, res) => {
+    console.log("Fetching apuntes for materia_id:", req.params.materia_id);
+    const { materia_id } = req.params;
+    try {
+        const { data, error } = await supabase
+            .from("apuntes")
+            .select("*")
+            .eq("materia_id", materia_id)
+            .eq("user_uuid", req.user.id);
+
+        if (error) {
+            return res.status(400).json({ error: error.message });
+        }
+
+        return res.status(200).json(data);
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ error: "Internal Server Error" });
+    }
+});
+
 module.exports = router;

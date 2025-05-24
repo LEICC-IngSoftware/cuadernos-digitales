@@ -12,6 +12,7 @@ import Materias from '../views/Materias.vue';
 import CreateMateria from '../views/CreateMateria.vue';
 import EditMateria from '../views/EditMateria.vue';
 import EditApunte from '../views/EditApunte.vue';
+import MateriaApuntes from '../views/MateriaApuntes.vue';
 
 const routes = [
   { path: '/', name: 'Home', component: Home },
@@ -27,6 +28,7 @@ const routes = [
   { path: '/materias', name: 'Materias', component: Materias },
   { path: '/materias/create', name: 'CreateMateria', component: CreateMateria },
   { path: '/materias/:id/edit', name: 'EditMateria', component: EditMateria },
+  { path: '/materias/:id/apuntes', name: 'MateriaApuntes', component: MateriaApuntes },
 ];
 
 const router = createRouter({
