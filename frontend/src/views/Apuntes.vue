@@ -43,7 +43,7 @@ onMounted(fetchApuntes);
         class="list-group-item d-flex justify-content-between align-items-center"
       >
         <RouterLink :to="`/apuntes/${apunte.id}`" class="text-decoration-none">
-          {{ apunte.contenido }}
+          {{ apunte.titulo }} <!-- Mostrar el título -->
         </RouterLink>
         <div>
           <RouterLink :to="`/apuntes/${apunte.id}/edit`" class="btn btn-sm btn-warning me-2">Editar</RouterLink>

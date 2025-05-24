@@ -1,12 +1,13 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
-import axios from '../axios'; // Asegúrate de usar la configuración de axios
+import axios from '../axios';
 
 const router = useRouter();
 const materias = ref([]);
 const selectedMateriaId = ref('');
 const contenido = ref('');
+const titulo = ref(''); // Nuevo campo para el título
 
 // Obtener el listado de materias al montar el componente
 onMounted(async () => {
@@ -24,6 +25,7 @@ const createApunte = async () => {
     await axios.post('/apuntes', {
       materia_id: selectedMateriaId.value,
       contenido: contenido.value,
+      titulo: titulo.value, // Enviar el título al API
     });
     router.push('/apuntes');
   } catch (error) {
@@ -44,6 +46,10 @@ const createApunte = async () => {
             {{ materia.nombre }}
           </option>
         </select>
+      </div>
+      <div class="mb-3">
+        <label for="titulo" class="form-label">Título:</label> <!-- Nuevo campo -->
+        <input id="titulo" v-model="titulo" class="form-control" type="text" required />
       </div>
       <div class="mb-3">
         <label for="contenido" class="form-label">Contenido:</label>
