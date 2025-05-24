@@ -20,7 +20,7 @@ onMounted(async () => {
   <div class="container mt-5">
     <div class="card shadow-sm">
       <div class="card-header">
-        <h1 class="h5 mb-0">Detalle del Apunte</h1>
+        <h1 class="h5 mb-0">{{ apunte?.titulo || 'Detalle del Apunte' }}</h1> <!-- Mostrar el título -->
       </div>
       <div class="card-body">
         <p v-if="apunte" class="mb-3">

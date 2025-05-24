@@ -45,12 +45,13 @@ router.get("/:id", authMiddleware, async (req, res) => {
 
 // Crear un nuevo apunte
 router.post("/", authMiddleware, async (req, res) => {
-    const { materia_id, contenido } = req.body;
+    const { materia_id, contenido, titulo } = req.body; // Agregar "titulo"
     try {
         const { data, error } = await supabase.from("apuntes").insert([
             {
                 materia_id,
                 contenido,
+                titulo, // Incluir "titulo"
                 user_uuid: req.user.id,
             },
         ]);
@@ -69,11 +70,11 @@ router.post("/", authMiddleware, async (req, res) => {
 // Actualizar un apunte por ID
 router.put("/:id", authMiddleware, async (req, res) => {
     const { id } = req.params;
-    const { contenido } = req.body;
+    const { contenido, titulo } = req.body; // Agregar "titulo"
     try {
         const { data, error } = await supabase
             .from("apuntes")
-            .update({ contenido })
+            .update({ contenido, titulo }) // Incluir "titulo"
             .eq("id", id)
             .eq("user_uuid", req.user.id);
 

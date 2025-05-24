@@ -4,6 +4,7 @@ import { useRouter, useRoute } from 'vue-router';
 import axios from '../axios';
 
 const contenido = ref('');
+const titulo = ref(''); // Nuevo campo para el título
 const materia_id = ref('');
 const materias = ref([]);
 const router = useRouter();
@@ -14,6 +15,7 @@ const fetchApunte = async () => {
     const { data } = await axios.get(`/apuntes/${route.params.id}`);
     const apunte = data[0];
     contenido.value = apunte.contenido;
+    titulo.value = apunte.titulo; // Asignar el título
     materia_id.value = apunte.materia_id;
   } catch (error) {
     console.error('Error al obtener el apunte:', error);
@@ -33,6 +35,7 @@ const updateApunte = async () => {
   try {
     await axios.put(`/apuntes/${route.params.id}`, {
       contenido: contenido.value,
+      titulo: titulo.value, // Enviar el título al API
       materia_id: materia_id.value,
     });
     router.push('/apuntes');
@@ -59,6 +62,10 @@ onMounted(() => {
             {{ materia.nombre }}
           </option>
         </select>
+      </div>
+      <div class="mb-3">
+        <label for="titulo" class="form-label">Título:</label> <!-- Nuevo campo -->
+        <input id="titulo" v-model="titulo" class="form-control" type="text" required />
       </div>
       <div class="mb-3">
         <label for="contenido" class="form-label">Contenido:</label>
